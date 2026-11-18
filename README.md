@@ -1,5 +1,11 @@
 <h1 align="center">bimmer-lab apps</h1>
 
+此分支提供 **仪表主题 0.19.1** 和 **HUD 小组件 0.15.1** 简体中文版，商店源为 `xingcici/apps`。设置菜单、提示和仪表数据标签使用中文，单位与车型标识保持原样。
+
+仪表主题在熄火后、仪表仍亮着时继续显示，需要 `cluster-render 0.6.4` 或更新版本。车辆休眠后不会继续点亮仪表。主题仍按所选驾驶模式切换；若希望舒适、节能模式也显示，请分别选择主题，或关闭“随驾驶模式切换”。HUD 小组件保留熄火时撤下图层、车辆就绪后恢复的行为。
+
+构建与检查：`python3 kit/tools/build.py cluster_themes idrive_hud_widgets`，然后运行 `node tools/test_localization.js`。补充中文字形时，用 Google Fonts 的 Noto Sans SC 字体运行 `uv run --no-project --with pillow python tools/bake_chinese.py /path/to/NotoSansSC.ttf`；字体许可见 `kit/runtime/fonts/OFL-NotoSansSC.txt`。
+
 <p align="center">Apps for BMW iDrive 7 head units (MGU), installed through the community MGU Store.</p>
 
 <p align="center"><img src="docs/images/cluster-gt3.gif" width="900" alt="GT3 race dash on the instrument cluster"></p>

@@ -1,5 +1,7 @@
 # Cluster Themes
 
+此分支显示为“仪表主题”，默认构建简体中文版。熄火后只要仪表仍处于唤醒状态，主题就继续显示；仪表休眠后停止显示，需要 `cluster-render >= 0.6.4`。各驾驶模式仍使用自己选定的主题。
+
 <img src="icon.png" width="72" align="left" alt="Cluster Themes icon">
 
 Redraws the whole instrument cluster in a theme of your choice. Open **Cluster Themes** from the apps menu on the center screen: its own page has the themes with pictures, the readouts, the badge, the Waze map, warnings and settings.

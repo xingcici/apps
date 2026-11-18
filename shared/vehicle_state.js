@@ -1,11 +1,9 @@
 'use strict';
 /**
- * vehicle_state.js - the switch-off guard (both apps), after cauliflowermossgrape's Redline (apps/redline/hud.js
- * holdOff / switchingOff, README "The mapping guard", MIT).
- *
- * cluster-render counts the cluster's display service going away within 10 s of a HUD layer being mapped as a
- * "strike"; two strikes turn the HUD off for good (until cluster-render is updated or its guard reset). At the car's
- * switch-off the cluster goes away, so a layer mapped just then earns a strike. So:
+ * vehicle_state.js - HUD switch-off guard, after cauliflowermossgrape's Redline (MIT).
+ * The HUD stops drawing while the car powers down. The panel stays wanted while the cluster is awake;
+ * cluster-render >= 0.6.4 reconnects it after display drops without the old mapping-strike counter.
+ * Unknown vehicle states still hold new layers on either target. For the HUD:
  *   - no NEW layer is made while BMW's vehicle state is 5 or lower (off / parked / living), 8 (drive readiness
  *     starting) or 12 (drive readiness ending), or is a state we don't know (15 "no value" among them: the last known
  *     one may be stale);
@@ -18,7 +16,7 @@
  * (kit/runtime/car.js conditionOf: 1 PARKEN_BN_NIO, 2 PARKEN_BN_IO, 3 STANDFUNKTIONEN_KUNDE_NICHT_IM_FZG, 5 WOHNEN,
  * 7 PRUEFEN_ANALYSE_DIAGNOSE, 8 FAHRBEREITSCHAFT_HERSTELLEN, 10 FAHREN, 12 FAHRBEREITSCHAFT_BEENDEN).
  *
- *   const vs = new VehicleState(log, onChange)   // onChange() when hold() or drop() changes
+ *   const vs = new VehicleState(log, onChange, target)   // target: hud (default) or panel
  *   extra['de.bmw.infrastructure.VehicleCondition'] = { VehicleCondition: (v) => vs.feed(v) }
  *   vs.hold()  -> true: make no new layer now          vs.drop() -> true: drop the layers that are up
  *   vs.text()  -> "vehicle state 12" for the status line
@@ -30,8 +28,9 @@ const NOT_SEEN_LOG_MS = 30000;   // no state by then: say once that nothing is h
 const isNum = (v) => typeof v === 'number' && isFinite(v);
 
 class VehicleState {
-    constructor(log, onChange) {
+    constructor(log, onChange, target = 'hud') {
         this.log = log;
+        this.target = target;
         this.onChange = onChange || (() => {});
         this.state = undefined;      // the last KNOWN state (number)
         this.known = null;           // null: nothing sent yet; false: the last one sent isn't a state we know
@@ -71,12 +70,12 @@ class VehicleState {
     /** No new layer now: off / parked (5 and lower), drive readiness starting (8) or ending (12), or a state we don't know. */
     hold() {
         const c = this.state;
-        return this.known === false || (isNum(c) && (c <= 5 || c === 8 || c === 12));
+        return this.known === false || (this.target !== 'panel' && isNum(c) && (c <= 5 || c === 8 || c === 12));
     }
     /** Drop what is up: drive readiness ending (12) or off (5 and lower), by the last known state (as Redline). */
     drop() {
         const c = this.state;
-        return isNum(c) && (c <= 5 || c === 12);
+        return this.target !== 'panel' && isNum(c) && (c <= 5 || c === 12);
     }
     text() { return this.known === false ? JSON.stringify(this.raw) + ' (not known)' : isNum(this.state) ? String(this.state) : 'not seen'; }
     _key() { return this.drop() ? 'drop' : this.hold() ? 'hold' : 'free'; }

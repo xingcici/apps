@@ -396,9 +396,14 @@ def build_start_widget(spec, app_id, icon_src, out, pkg_out=None):
     return {'component': comp, 'layout': ui['containers']['500']['components'][str(WIDGET_COMPONENT_ID)]['cells']['Widget']['value']}
 
 
-def build(app_id, language='en'):
+def build(app_id, language=None):
     spec = json.load(open(os.path.join(APPS, app_id, 'app.json'), encoding='utf-8'))
+    fixed_language = spec.get('language') if language is None else None
+    language = language or fixed_language or 'en'
+    version = spec['version']
     spec = localize_spec(spec, language)
+    if fixed_language:
+        spec['version'] = version
     spec.setdefault('id', app_id)
     ver = spec['version']
     stage = os.path.join(DIST, app_id)
@@ -596,7 +601,7 @@ def gz_header_free(path):
 def main():
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--language', choices=languages(), default='en')
+    parser.add_argument('--language', choices=languages())
     parser.add_argument('apps', nargs='*')
     args = parser.parse_args()
     ids = args.apps or sorted(d for d in os.listdir(APPS) if os.path.exists(os.path.join(APPS, d, 'app.json')))

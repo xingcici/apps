@@ -10,7 +10,6 @@ Fault Scanner	故障检测
 eDrive	EDrive助手
 Service	保养信息
 Doom	毁灭战士
-Settings	设置
 Next page	下一页
 Previous page	上一页
 Next item	下一项
@@ -29,8 +28,6 @@ Reset best	重置最佳
 Current	当前
 Incl. history	包含历史
 Start page	启动页面
-Engine	发动机
-Chassis	底盘
 Thermals	温度
 Fuel & ignition	燃油与点火
 Colour theme	配色主题
@@ -54,7 +51,6 @@ Hide (RWD)	隐藏（后轮驱动）
 No (12 V only)	否（仅 12 V 电池）
 Speed unit	速度单位
 Speed display rate	速度刷新率
-Speed	车速
 Power unit	功率单位
 Torque unit	扭矩单位
 Temperature unit	温度单位
@@ -83,7 +79,6 @@ Power from	功率来源
 Sport display	运动仪表
 Torque x rpm	扭矩 × 转速
 Oil temp warning	机油温度警告
-Boost	增压压力
 Boost from	增压压力来源
 Engine unit (OBD)	发动机控制单元（OBD）
 Gearbox oil temperature	变速箱油温
@@ -91,16 +86,13 @@ Gearbox temperature (EGS)	变速箱温度（EGS）
 Tyre card	轮胎面板
 Tyre temperatures	轮胎温度
 xDrive card	xDrive 面板
-Intake air temperature	进气温度
 High pressure fuel	高压燃油
 Low pressure fuel	低压燃油
 Ignition timing	点火提前角
 Misfire counter	失火计数
 Cold rev limit	冷机转速上限
 Rev scale up to	转速刻度上限
-Cold-engine rev guard	冷机转速保护
 Oil warm at	机油暖机温度
-Shift point before redline	换挡提示距红线转速
 Blink and flash at shift point	换挡点闪烁提示
 Shift light style	换挡灯样式
 M (green-yellow-red)	M 样式（绿黄红）
@@ -121,7 +113,6 @@ One-foot rollout	一英尺起步豁免
 Circle size	圆盘量程
 G-force display rate	G 值刷新率
 Trail length	轨迹长度
-Swap left / right	交换左右方向
 Counts as hard braking above	急刹车判定阈值
 Oil is warm at	机油暖机目标温度
 Coolant is warm at	冷却液暖机目标温度
@@ -176,21 +167,13 @@ Render resolution	渲染分辨率
 Full: 1920 x 504, every screen pixel	全分辨率：1920 × 504
 Medium: 1440 x 378	中：1440 × 378
 Low: 960 x 252	低：960 × 252
-DEMO	演示
 EST.	估算
 OK	正常
-READY	就绪
 Ready	就绪
 Oil	机油
 OIL	机油
 Coolant	冷却液
-COOLANT	冷却液
-WATER	水温
 RPM	转速
-SPEED	车速
-POWER	功率
-TORQUE	扭矩
-PEAK	峰值
 PEAK POWER	峰值功率
 PEAK TORQUE	峰值扭矩
 PEAK DECEL	最大减速度
@@ -208,7 +191,6 @@ ADDED	增加
 COST	费用
 LEARNED	已学习
 FULL	满电
-RANGE	续航
 ENERGY	能量
 ALL TIME	累计
 THIS MONTH	本月
@@ -217,7 +199,6 @@ WITH ENGINE	发动机运行
 LAST CHARGE	上次充电
 IN THE BATTERY NOW	当前电池能量
 HV BATTERY	高压电池
-OUTSIDE	车外温度
 CHARGING	充电中
 CLIMATE ON	空调开启
 CLIMATE & ON-BOARD	空调与车载用电
@@ -227,7 +208,6 @@ ENGINE ON  ·  battery	发动机运行 · 电池
 CHARGING  (engine / DC-DC running)	正在充电（发动机 / DC-DC 运行）
 KWH PER DAY, 14 DAYS	近 14 天每日充电量（kWh）
 Engine oil	发动机机油
-Engine speed	发动机转速
 Gearbox oil	变速箱油温
 Gearbox (EGS)	变速箱（EGS）
 Ambient	环境温度
@@ -235,17 +215,11 @@ Intake air (IAT)	进气温度（IAT）
 Intake air above outside	进气与环境温差
 Ignition timing (before TDC)	点火提前角（上止点前）
 Misfires	失火次数
-Tyres	轮胎
-Power	功率
 Torque	扭矩
 G-force	G 值
 Front	前轴
 FRONT	前轴
 Rear	后轴
-FL	左前
-FR	右前
-RL	左后
-RR	右后
 2WD	两驱
 4WD	四驱
 2WD mode	两驱模式
@@ -294,18 +268,10 @@ Tach	转速表
 Shift accuracy	换挡准确率
 Shift log	换挡记录
 Recent upshifts	最近升挡
-LAST SHIFT	上次换挡
-SHIFT AT	换挡转速
-SHIFT	换挡
-EARLY	过早
-LATE	过晚
 SPOT ON	恰好
-LIMITER	转速限制
-COLD	冷机
 COLD REV	冷机转速
 COLD  ·  LIMIT	冷机 · 转速上限
 OIL COLD  ·  GO EASY	机油未热 · 温和驾驶
-AVG	平均
 No shifts yet - go and use the rev range.	暂无换挡记录。
 rpm vs shift point	转速与换挡点
 shifts)	次换挡）
@@ -321,7 +287,6 @@ ECU TORQUE	ECU 扭矩
 POWER NOW	当前功率
 SETUP	参数
 SPEED RANGE	车速范围
-Peak	峰值
 estimate at the crank	估算曲轴功率
 waiting for a pull	等待加速测试
 keep it pinned...	保持油门…
@@ -338,7 +303,6 @@ STOPPING	制动中
 STOPPED	已停车
 BRAKE HARD	全力制动
 GET ABOVE	加速至高于
-BEST	最佳
 NEW BEST	新最佳
 CONSISTENT	稳定
 FADING  +	衰减 +
@@ -382,10 +346,6 @@ LATERAL	横向
 LONGITUDINAL	纵向
 LEFT	左
 RIGHT	右
-ACCEL	加速
-BRAKE	制动
-ACC	加速
-BRK	制动
 TOP	最高
 Warm-up	暖机助手
 ENGINE OFF	发动机关闭
@@ -396,7 +356,6 @@ NO OIL TEMP	无机油温度
 OIL HOT - EASE OFF	机油过热，请降低负荷
 COOLED - OK TO SWITCH OFF	已冷却，可以熄火
 TURBO COOL-DOWN	涡轮冷却中
-WARMING UP	暖机中
 SAFE REV LIMIT	建议转速上限
 COOL-DOWN LEFT	冷却剩余时间
 OIL READY IN	机油暖机剩余
@@ -408,7 +367,6 @@ Oil warm	机油已热
 keep it gentle	保持温和驾驶
 paused - stay under	已暂停，请保持低于
 Real electric range	实际纯电续航
-Range	续航
 Energy	能耗
 Charge log	充电记录
 Diagnostics	诊断
@@ -450,7 +408,6 @@ not read	尚未读取
 not started	尚未开始
 not yet	尚未
 none yet	暂无
-now	现在
 today	今天
 days ago	天前
 h ago	小时前
@@ -774,7 +731,6 @@ Reset drive totals	重置本次行程统计
 Scan page: control unit	扫描页面：控制单元
 CELLS	电芯
 Cells	电芯
-Drive	行程
 THIS DRIVE	本次行程
 This drive	本次行程
 CHARGE	充电
@@ -803,7 +759,6 @@ LOWEST	最低
 SPREAD	差值
 TEMPERATURE	温度
 SCANNING	扫描中
-DONE	完成
 ALL THAT ANSWER (identifier: bytes)	所有响应项（标识符：字节数）
 LIVE COMPARISON: starts when the scan is done	实时对比：扫描结束后开始
 LOOK LIKE CELL VOLTAGES (V)	疑似电芯电压（V）
@@ -876,7 +831,6 @@ IN BATTERY	电池剩余能量
 IN IT NOW	当前能量
 HOLDS	电池容量
 TOTAL	总计
-Reset	重置
 Scan:	扫描：
 % per	%／
 - see Diagnostics page	请查看诊断页面
@@ -957,7 +911,6 @@ MAP –	程序 –
 MG1 flap control is confirmed but not armed (needs bench validation + authorisation)	MG1 阀门控制已确认但未启用（需台架验证及授权）
 MHD flap control is not armed	MHD 阀门控制未启用
 MHD — exhaust flap	MHD：排气阀门
-Map	自适应图
 Max Cooling	最大冷却
 NONE	无
 No answer from the DME	DME 未响应
@@ -1171,3 +1124,371 @@ up	升挡
 down	降挡
 skip	跳挡降挡
 m ago	分钟前
+
+# 仪表主题与 HUD 小组件
+Cluster Themes	仪表主题
+HUD Widgets	HUD 小组件
+All settings	全部设置
+Themes	主题
+Layouts	布局
+Readouts	数据项
+Position	位置
+Map	地图
+Badge	车型标识
+Alerts	提醒
+G-meter	G 值仪表
+Colours	配色
+Settings	设置
+Theme	主题
+Layout	布局
+Theme (when not by drive mode)	固定主题（不随驾驶模式切换）
+Layout (when not by drive mode)	固定布局（不随驾驶模式切换）
+Off (BMW's own cluster)	关闭（原厂仪表）
+Off (BMW's own HUD)	关闭（原厂 HUD）
+BMW's own	原厂
+BMW's own HUD	原厂 HUD
+M view	M 视图
+Vector	音乐面板
+Sport	运动
+Comfort	舒适
+Eco Pro	节能
+Minimal	极简
+Track	赛道
+Drag	加速计时
+Rally	拉力
+Retro 80s	复古 80 年代
+Retro	复古
+Cruise	巡航
+Dyno	数据面板
+Ribbon	缎带
+Calibration grid	校准网格
+Map calibration	地图校准
+Window calibration	显示区域校准
+Daily	日常
+Shift only	仅换挡提示
+Classic	经典
+Night	夜间
+Change with SPORT / COMFORT / ECO PRO	随运动 / 舒适 / 节能模式切换
+Change with the drive mode	随驾驶模式切换
+In Comfort	舒适模式
+In Sport	运动模式
+In Eco Pro	节能模式
+In Comfort (Daily by default; BMW keeps its speed bottom-left)	舒适模式（默认日常，保留原厂左下方车速）
+In Sport (off by default: BMW's Sport HUD takes the middle)	运动模式（默认关闭，保留原厂运动 HUD）
+In Eco Pro (off by default: BMW's own HUD)	节能模式（默认关闭，使用原厂 HUD）
+Show Waze map inside the theme	在主题内显示导航地图
+Clock	时钟
+12-hour	12 小时制
+24-hour	24 小时制
+Time zone (clock)	时区（时钟）
+Not set (UTC)	未设置（UTC）
+US Eastern	美国东部
+US Central	美国中部
+US Mountain	美国山区
+Arizona	亚利桑那
+US Pacific	美国太平洋
+Alaska	阿拉斯加
+Hawaii	夏威夷
+Canada Atlantic	加拿大大西洋
+Mexico	墨西哥
+UK, Ireland, Portugal	英国、爱尔兰、葡萄牙
+Central Europe	中欧
+Eastern Europe	东欧
+Fuel tank size	油箱容量
+Redline (shift light)	红线转速（换挡提示）
+Shift point before redline	换挡点提前量
+Cold-engine rev guard	冷机转速保护
+Cold-engine rev guard (Redline)	冷机转速保护（换挡转速布局）
+Shift lights	换挡提示灯
+Count in, by how fast the revs climb	按转速上升速度倒计时
+Fixed rpm band, as before	固定转速区间
+Show temperatures only when they matter	仅在需要时显示温度
+Show boost	显示增压
+Show boost (Sport layout)	显示增压（运动布局）
+Leave room for the driver camera	为驾驶员摄像头预留空间
+Holiday editions	节日样式
+Auto, by the date	自动，按日期切换
+Christmas	圣诞节
+Thanksgiving	感恩节
+New Year	新年
+Fourth of July	美国独立日
+Oil temperature warning	机油温度提醒
+Coolant temperature warning	冷却液温度提醒
+Boost warning	增压提醒
+G-meter: swap left / right	G 值仪表：交换左右
+G-meter: brake on top	G 值仪表：上方显示制动
+G-meter range	G 值仪表量程
+G-meter trail	G 值仪表轨迹
+Night colours	夜间配色
+Auto (dimmer after sunset)	自动（日落后降低亮度）
+Auto (Night after sunset)	自动（日落后使用夜间配色）
+Daytime theme for Auto	自动模式的日间配色
+BMW lettering on the badge	车型标识显示 BMW 字样
+Auto (until the car sends data)	自动（等待车辆数据）
+None	无
+Show clock	显示时钟
+Show oil temperature	显示机油温度
+Show coolant temperature	显示冷却液温度
+Directions on the HUD	HUD 导航指引
+Near turns	接近转弯时
+While a route runs	导航期间
+HUD position, left / right	HUD 位置：左右
+HUD position, up / down	HUD 位置：上下
+HUD size	HUD 大小
+Now showing	当前显示
+On the cluster	仪表显示
+Series	车系
+Model	车型
+BMW lettering	BMW 字样
+No badge	不显示车型标识
+Drawn as text in the theme's own font.	使用主题字体绘制车型标识。
+GT3: top left. Sport and M: bottom centre.	GT3：左上方。运动和 M：底部中央。
+Navigation map on the cluster	仪表导航地图
+Not available in this app	此应用不支持
+This theme has no map version (GT3, Sport and M do)	此主题不支持地图（GT3、运动和 M 支持）
+On: GT3, Sport and M open a window in the middle and Waze on Cluster draws its map in it, above	开启后，GT3、运动和 M 在中央预留窗口，由地图仪表盘绘制导航。
+BMW's own map view, so nothing shows twice. When the map goes away the theme fills back in.	导航覆盖原厂地图，避免重复显示；地图关闭后恢复完整主题。
+While on, Waze's map on the HUD is off (the cluster and the HUD share one picture).	开启时不在 HUD 显示地图（仪表和 HUD 共用一幅画面）。
+Needs robertnisipeanu's Waze on Cluster. Turning this off gives Waze its usual place back.	需要安装地图仪表盘应用。关闭后，地图恢复原来的显示位置。
+Warnings · the readout flashes red over its limit	提醒：读数超限时闪红
+Test the shift lights	测试换挡提示灯
+Run test	开始测试
+Running	运行中
+Stop the car first	请先停车
+Runs the rpm up to the shift point for about 4 seconds: the lights fill, go red and flash.	约 4 秒内模拟转速升至换挡点：灯逐步点亮、变红并闪烁。
+Only while the car stands. Set a limit to 0 (Off) to turn that warning off.	仅停车时可用。将阈值设为 0（关闭）可停用对应提醒。
+Rpm band	转速区间
+Count-in	倒计时
+From a fixed rpm up to the shift point.	从固定转速开始点亮，直至换挡点。
+Fill over the last second, flash early	最后一秒逐步点亮，按反应时间
+by your reaction time.	提前闪烁。
+Temperatures	温度
+Only when they matter	仅在需要时显示
+Oil and coolant show only while cold,	仅在冷机、暖机或过热时显示
+warming up or hot. Outside: blue at	机油与水温。低于以下温度时室外温度显示蓝色：
+The next turn, its distance and the lanes.	显示下一转弯、距离及车道。
+CarPlay with Apple Maps. Waze sends no turns.	支持 CarPlay 苹果地图；Waze 不提供转弯指引。
+BEST THIS DRIVE, IN G	本次行程峰值（G）
+Left	左
+Right	右
+Accel	加速
+Brake	制动
+Peak	峰值
+Reset	重置
+Range	续航
+Trail	轨迹
+Swap left / right	交换左右
+Brake on top	上方显示制动
+From the car's own acceleration sensor. Parked on level ground it reads 0.00; hills add a little.	数据来自车辆加速度传感器。水平地面静止时为 0.00；坡道上会略有偏差。
+The outline is the most g this drive in every direction; Reset clears it with the bests.	轮廓表示本次行程各方向的最大 G 值；重置会同时清除轮廓和峰值。
+no g reading	暂无 G 值读数
+Colours on the glass	HUD 配色
+In daylight	日间
+Otherwise	其他情况
+Auto switches to Night after sunset. The HUD is a projector: bright, solid colours read best.	自动模式在日落后切换夜间配色。HUD 投影使用明亮纯色更清晰。
+Move	移动
+Size	大小
+Centre	居中
+centred	已居中
+moved	已移动
+The dashed frame is the part of the HUD you can see.	虚线框为 HUD 实际可见区域。
+Every tap moves the real HUD right away.	每次点击都会立即移动 HUD 画面。
+HUD is off	HUD 已关闭
+Tap to turn the HUD off	点击关闭 HUD
+Play demo	播放演示
+Stop demo	停止演示
+Stop the car to play the demo	请停车后播放演示
+DEMO DATA	演示数据
+DEMO	演示
+At the redline	红线转速时
+Reset slots	重置数据项
+none here	此处无数据项
+no picture	暂无预览
+A cluster theme and the HUD can't show at the same time.	当前无法同时显示仪表主题和 HUD 小组件。
+The HUD and a cluster theme can't show at the same time.	当前无法同时显示 HUD 小组件和仪表主题。
+Turn HUD off	关闭 HUD
+Turn theme off	关闭仪表主题
+Waze map · on	导航地图 · 开启
+Waze map · off	导航地图 · 关闭
+Map showing in the theme	地图正在主题内显示
+Waiting for the map	等待地图
+Map frozen, waiting for the phone	地图画面冻结，等待手机
+Moving the map into the theme	正在将地图移入主题
+Off. Waze shows the map in BMW's own map view	已关闭，地图在原厂地图区域显示
+Waze app is open, retrying	地图应用已打开，正在重试
+Waze map is turned off in the Waze app	地图应用内的地图显示已关闭
+Waze on Cluster isn't running	地图仪表盘未运行
+Waze on Cluster reports an error	地图仪表盘报告错误
+Waze on Cluster: this car isn't supported	地图仪表盘不支持此车辆
+race dash	赛车仪表
+M8 style	M8 风格
+M3 / M5 look	M3 / M5 风格
+music panel	音乐面板
+Live Cockpit	数字驾驶舱
+just the speed	纯车速
+lights · G-meter	提示灯 · G 值
+tyres + temps	胎压 · 温度
+0-60 timer	加速计时
+rev arc · G-meter	转速弧 · G 值
+80s digital	复古数码
+calm · trip	简洁 · 行程
+safety tiles	数据卡片
+calm · holidays	简洁 · 节日
+gear · clock · oil	挡位 · 时钟 · 机油
+rev bar · temps · boost	转速 · 温度 · 增压
+shift lights · shift score	换挡灯 · 换挡评分
+round BMW speed	原厂车速
+lights · gear	提示灯 · 挡位
+boost · peak	增压 · 峰值
+oil · coolant · intake	机油 · 水温 · 进气
+range · trip	续航 · 行程
+amber digital	琥珀数码
+rev band · km/h	转速 · 车速
+lights · now playing	提示灯 · 音乐
+Engine	发动机
+Temps	温度
+Chassis	底盘
+Fuel	燃油
+Tyres	轮胎
+Drive	驾驶
+Engine speed	发动机转速
+Boost	增压
+Engine torque	发动机扭矩
+Power	功率
+Torque, % of max	扭矩占最大值百分比
+Power, % of max	功率占最大值百分比
+Oil temperature	机油温度
+Coolant temperature	冷却液温度
+Intake air temperature	进气温度
+Outside temperature	室外温度
+Speed	车速
+Cornering g	横向 G 值
+Braking / accel g	纵向 G 值
+Fuel level	燃油量
+Hybrid battery (plug-in hybrids)	混动电池（插电混动车型）
+Tyre pressure, front left	左前胎压
+Tyre pressure, front right	右前胎压
+Tyre pressure, rear left	左后胎压
+Tyre pressure, rear right	右后胎压
+Tyre temperature, front left	左前胎温
+Tyre temperature, front right	右前胎温
+Tyre temperature, rear left	左后胎温
+Tyre temperature, rear right	右后胎温
+Shift point	换挡点
+Last shift	上次换挡
+BOOST	增压
+TORQUE	扭矩
+POWER	功率
+COOLANT	水温
+WATER	水温
+INTAKE	进气
+OUTSIDE	室外
+SPEED	车速
+FUEL	燃油
+RANGE	续航
+BATTERY	电量
+TIME	时间
+FL	左前
+FR	右前
+RL	左后
+RR	右后
+SHIFT AT	换挡点
+LAST SHIFT	上次换挡
+SHIFTED	上次换挡
+LAT G	横向 G
+LONG G	纵向 G
+BEST	最佳
+GEAR	挡位
+AVG	平均
+PEAK	峰值
+NOW PLAYING	正在播放
+G-FORCE	G 值
+ACCEL	加速
+BRAKE	制动
+ACC	加速
+BRK	制动
+L	左
+R	右
+READY	准备就绪
+GO	开始
+DONE	完成
+WARMING UP	暖机中
+ENGINE WARM	暖机完成
+EARLY	过早
+LATE	过晚
+LIMITER	触及断油
+AUTO	自动
+CRUISE	巡航
+COLD	冷机
+SHIFT	换挡
+MERRY CHRISTMAS	圣诞快乐
+HAPPY THANKSGIVING	感恩节快乐
+HAPPY NEW YEAR	新年快乐
+HAPPY 4TH OF JULY	独立日快乐
+slots	个数据项
+warnings off	提醒已关闭
+warning	项提醒
+warnings	项提醒
+now	当前
+rpm before	转提前
+Playing on the	正在演示：
+Pick a	请选择
+is not drawing yet	尚未显示
+is on	已开启
+Turn HUD Widgets off so	关闭 HUD 小组件以显示
+Turn the cluster theme off so	关闭仪表主题以显示
+shows?	？
+has the screen · pick one to take it back	正在占用显示，选择主题即可切回
+to play the demo	以播放演示
+readout slots	数据项
+pick a sensor	选择传感器
+where it sits on the glass	在挡风玻璃上的位置
+ON THE	显示于
+cluster	仪表
+theme	主题
+layout	布局
+trail	轨迹
+warning on	项提醒开启
+warnings on	项提醒开启
+connecting to cluster-render	正在连接仪表渲染器
+cluster-render is not installed or not running	仪表渲染器未安装或未运行
+drive mode not seen yet	尚未收到驾驶模式
+drive mode not recognised	无法识别驾驶模式
+BMW is using this display	原厂系统正在使用此显示区域
+another app has this display	其他应用正在使用此显示区域
+waiting	等待中
+parked	暂停
+refused	被拒绝
+drawn	已显示
+layer	图层
+layers	图层
+on	开启
+off	关闭
+HUD OFF	HUD 已关闭
+CLUSTER OFF	仪表已关闭
+ON THE HUD	HUD 已开启
+ON THE CLUSTER	仪表已开启
+Drive mode check:	驾驶模式诊断：
+slot	数据项
+hot	过热
+cold	冷机
+comfort	舒适
+sport	运动
+eco	节能
+SPORT PLUS	运动增强
+COMFORT	舒适
+ECO PRO	节能
+SPORT INDIVIDUAL	个性化运动
+stock	原厂
+None of these	这些
+has readout slots.	均未提供数据项。
+tap a drive mode to give it that layout	点击驾驶模式以分配布局
+HUD on	HUD 已开启
+HUD off	HUD 已关闭
+Cluster on	仪表已开启
+Cluster off	仪表已关闭
+demo data	演示数据
+pixels	像素
+MiB of	MiB /
+on the HUD	在 HUD 上
+on the cluster	在仪表上

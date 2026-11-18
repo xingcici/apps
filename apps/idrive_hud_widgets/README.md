@@ -1,5 +1,7 @@
 # HUD Widgets
 
+此分支显示为“HUD 小组件”，默认构建简体中文版。菜单、提示和数据标签使用中文；HUD 保留熄火时撤下图层的行为。
+
 <img src="icon.png" width="72" align="left" alt="HUD Widgets icon">
 
 Puts your own readouts on the windshield HUD: gear, a shift bar, boost, oil and coolant temperatures, a clock, or any car sensor you pick. BMW's HUD already shows the speed, so these layouts leave it out. Open **HUD Widgets** from the apps menu on the center screen and set it up on its page.
@@ -134,7 +136,7 @@ Layout, drive mode switching, which sensor each readout shows, where the HUD sit
 
 **Holiday editions:** Auto (the default) puts on holiday colours by the date: Christmas (red, green and gold, a string of glowing Christmas lights along the top of the HUD, the shift lights as coloured bulbs, and MERRY CHRISTMAS while you're stopped), Thanksgiving, New Year and the Fourth of July, each with its own lights. The lights twinkle gently only while you're stopped; nothing moves on the glass while you drive. Or pick one, or Off.
 
-**Switching off:** the app puts nothing new on the HUD while the car is switching on or off, and takes its layers down at switch-off, so cluster-render never counts it against the HUD.
+**Switching off:** the app puts nothing new on the HUD while the car is switching on or off, and takes its layers down at switch-off. It restores the selected layout when the car is ready again.
 
 The last line of the Settings tab says what the HUD is doing, the drive mode it sees, and why anything is not drawn (for example "waiting: another app has this display").
 

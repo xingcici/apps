@@ -13,6 +13,8 @@
  * Output is straight (non-premultiplied) RGBA, as cluster-render image layers take it.
  */
 const data = require('./hud_data');
+const fonts = require('./kit/fonts');
+const { Canvas } = require('./kit/canvas');
 
 const loadedFonts = new Map();
 const warnedMissing = new Set();
@@ -35,8 +37,17 @@ function glyphOf(font, ch) {
     return font.metrics.glyphs[' '] || { x: 0, y: 0, w: 0, h: 0, ox: 0, advance: 0 };
 }
 
+function chineseFont(text, name) {
+    if (!/[\u3000-\u9fff\uff00-\uffef]/.test(text)) return null;
+    const base = loadFont(name).metrics, f = fonts.get('cjk', base.size, text);
+    const size = Math.min(base.size, (base.cellHeight - 4) * f.size / (f.ascent + f.descent));
+    return { font: f, size, baseline: 2 + f.ascent * size / f.size };
+}
+
 /** Width in px of `text` in `fontName` with `spacing`. */
 function measure(text, fontName, spacing) {
+    const cn = chineseFont(text, fontName);
+    if (cn) return fonts.measure(cn.font, String(text)) * cn.size / cn.font.size + Math.max(0, String(text).length - 1) * (spacing || 0);
     const font = loadFont(fontName);
     const chars = String(text).split('');
     let w = 0;
@@ -46,6 +57,16 @@ function measure(text, fontName, spacing) {
 
 /** Coverage mask (boxW*boxH bytes) of the text laid out in the box. */
 function mask(boxW, boxH, text, opts) {
+    const cn = chineseFont(text, opts.font);
+    if (cn) {
+        const cv = new Canvas(boxW, boxH);
+        const x = opts.align === 'right' ? boxW : opts.align === 'center' ? boxW / 2 : 0;
+        cv.text(text, x + (opts.x || 0), cn.baseline + (opts.offsetY || 0), cn.size, '#ffffff',
+            { font: 'cjk', align: opts.align, spacing: opts.spacing, literal: true });
+        const out = Buffer.alloc(boxW * boxH);
+        for (let i = 0; i < out.length; i++) out[i] = cv.d[i * 4 + 3];
+        return out;
+    }
     const font = loadFont(opts.font);
     const spacing = opts.spacing || 0;
     const out = Buffer.alloc(boxW * boxH, 0);

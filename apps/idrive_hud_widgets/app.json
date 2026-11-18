@@ -1,8 +1,8 @@
 {
   "id": "idrive_hud_widgets",
-  "title": "HUD Widgets",
-  "description": "Gear, shift lights, boost, oil, coolant and intake temperatures, a G-meter, trip figures and the song playing on the windshield HUD, in Classic, M or Night themes",
-  "version": "0.15.0",
+  "title": "HUD 小组件",
+  "description": "在抬头显示器上显示挡位、换挡提示、增压、机油温度、水温、进气温度、G 值、行程及正在播放的音乐。",
+  "version": "0.15.1",
   "vendor": "custom",
   "loggingId": "OAH1",
   "iconGlyph": "HUD",
@@ -1179,5 +1179,6 @@
       ]
     },
     "tankLitres": 65
-  }
+  },
+  "language": "zh-CN"
 }

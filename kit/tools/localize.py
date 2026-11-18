@@ -49,6 +49,8 @@ def localize_spec(spec, language):
     s = copy.deepcopy(spec)
     s['version'] = package_version(s['version'], language)
     s['title'] = text(s['title'], words)
+    if 'description' in s:
+        s['description'] = text(s['description'], words)
     for screen in s.get('screens', []):
         if 'title' in screen:
             screen['title'] = text(screen['title'], words)
@@ -61,6 +63,8 @@ def localize_spec(spec, language):
         setting['label'] = text(setting['label'], words)
         for option in setting.get('options', []):
             option[1] = text(option[1], words)
+        if 'labels' in setting:
+            setting['labels'] = {key: text(value, words) for key, value in setting['labels'].items()}
     return s
 
 

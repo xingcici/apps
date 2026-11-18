@@ -264,6 +264,7 @@ const ShiftScore = require('./shift_score');
 const visible = require('./visible');
 const sun = require('./sun');
 const textRaster = require('./hud_text');
+const { t } = require('./kit/i18n');
 const { paintIcon } = require('./icons');
 const shaders = require('./shaders');
 const calibration = require('./calibration');
@@ -274,7 +275,7 @@ const badges = require('./badges');
 const Runs = require('./runs');
 const tz = require('./tz');
 const holidays = require('./holidays');
-const VehicleState = require('./vehicle_state');    // the switch-off guard: no new layer while the car switches off
+const VehicleState = require('./vehicle_state');
 const ShiftCue = require('./shift_cue');            // the count-in shift lights (setting "shiftCue")
 const smartTemps = require('./smart_temps');        // "showWhen": "abnormal", temperature colours, slot bumping
 const hudHoliday = require('./hud_holiday');
@@ -564,7 +565,7 @@ class HudApp {
         this.testAt = null;              // the shift-light test's start (Date.now()), while it runs
         this.nightOn = false;            // the layout was built with the night colours (nightDim)
 
-        this.vstate = new VehicleState(this.log, () => this._guard('vehicle state', () => this._vehicleState()));
+        this.vstate = new VehicleState(this.log, () => this._guard('vehicle state', () => this._vehicleState()), this.target);
         this.cue = new ShiftCue(ctx.dataDir, this.log);
         this.slotBumps = {};             // { slot id: sensor id }: a hot temperature shown there for now (smart_temps.js)
         this._setupVehicleData();
@@ -1837,7 +1838,13 @@ class HudApp {
         return p ? [p.lat, p.lon] : [tz.FALLBACK.lat, tz.FALLBACK.lon];
     }
 
-    _resolve(template) { return String(template).replace(/\{\{([a-zA-Z0-9:]+)\}\}/g, (_, t) => this._token(t)); }
+    _resolve(template) {
+        return String(template).replace(/\{\{([a-zA-Z0-9:]+)\}\}|([^{}]+)/g, (_, token, literal) => {
+            if (!token) return t(literal);
+            const value = this._token(token);
+            return ['badge', 'gear', 'gearnum'].indexOf(token) >= 0 || /^(media|u:)/.test(token) ? value : t(value);
+        });
+    }
 
     /* ---------------- layers ---------------- */
 
