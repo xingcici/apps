@@ -157,8 +157,11 @@ class Car {
         // a while" doesn't mean "no car": once a signal's provider is there, stay on live data
         this.subs = [];
         this.t0 = Date.now();
-        Object.keys(watches).forEach((iface) => ctx.signals.watch(iface, '1', watches[iface], this.log, pollMs[iface] ? { pollMs: pollMs[iface] } : undefined)
-            .then((s) => { this.subs.push(s); this.log.info('signal ' + iface.split('.').pop() + (s.error ? ' error: ' + s.error : ' subscribed')); }));
+        Object.keys(watches).forEach((iface) => {
+            const instance = iface === 'de.bmw.infotainment.hmi.hmimediastate.HmiMediaState' ? 'HMI_CID' : '1';
+            ctx.signals.watch(iface, instance, watches[iface], this.log, pollMs[iface] ? { pollMs: pollMs[iface] } : undefined)
+                .then((s) => { this.subs.push(s); this.log.info('signal ' + iface.split('.').pop() + (s.error ? ' error: ' + s.error : ' subscribed')); });
+        });
 
         // demo feed (20 Hz) - also keeps the sim warm so switching is seamless. On a busy or
         // slow CPU the timer fires late; replay every missed 50 ms step (up to 3 s) with its own
