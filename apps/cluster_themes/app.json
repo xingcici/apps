@@ -1,5 +1,6 @@
 {
   "id": "cluster_themes",
+  "mguAppStartType": "autostart",
   "title": "仪表主题",
   "description": "自定义仪表主题，提供 GT3、M 风格、音乐面板、赛道、加速计时、复古和节日等样式，支持换挡提示、增压、温度、胎压与 G 值显示。",
   "version": "0.19.1",

@@ -693,6 +693,7 @@ async function runInner(impl) {
             new Promise((res) => { timer = setTimeout(() => { log.warn(what + ' still pending after ' + ms + ' ms, continuing'); res(); }, ms); }),
         ]).catch((e) => log.error(what, e)).then(() => clearTimeout(timer));
     };
+    if (impl && impl.startBackground) await step('background start', Promise.resolve().then(() => impl.startBackground(ctx)), 5000);
     // push every screen's rows to the HMI once (BMW apps do this via
     // updateResources before opening a state); until then the HMI has no rows
     // and lists render empty

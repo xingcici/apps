@@ -6,6 +6,8 @@ const root = path.resolve(__dirname, '..');
 for (const id of ['cluster_themes', 'idrive_hud_widgets']) {
     const dir = path.join(root, 'dist', id, 'source', 'javascript');
     const source = require(path.join(root, 'apps', id, 'app.json'));
+    const pkg = require(path.join(root, 'dist', id, 'source/package.json'));
+    assert.strictEqual(pkg.mguAppStartType, source.mguAppStartType);
     const spec = require(path.join(dir, 'kit/app-spec.json'));
     const locale = require(path.join(dir, 'kit/locale.json'));
     const fonts = require(path.join(dir, 'kit/fonts'));
