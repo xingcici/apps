@@ -2,6 +2,10 @@
 
 Newest first. Dates are when the build was pushed.
 
+## Cluster Themes 0.19.4 (personal fork)
+
+- Prefer the Store's renderer when both renderer services are installed, so the theme settings page uses its updated font support. Keep the community renderer as fallback and preserve explicit socket overrides.
+
 ## Cluster Themes 0.19.3 (personal fork)
 
 - Add optional Automatic follow shift lights (自动挡跟随) to Cluster Themes. Learn real D/S upshift RPM by gear, drive mode, temperature and RPM-rise group; use the median after three consistent samples and retain history across restarts.
