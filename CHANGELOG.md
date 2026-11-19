@@ -2,6 +2,12 @@
 
 Newest first. Dates are when the build was pushed.
 
+## Cluster Themes 0.19.3 (personal fork)
+
+- Add optional Automatic follow shift lights (自动挡跟随) to Cluster Themes. Learn real D/S upshift RPM by gear, drive mode, temperature and RPM-rise group; use the median after three consistent samples and retain history across restarts.
+- Fall back to normal/Redline cues when no usable prediction exists; cap predictions by the configured and cold-engine limits. Clear lights briefly on gear changes and clear an old flash when its prediction becomes invalid.
+- Keep the existing Count in default. Add Chinese labels and glyphs. Automatic timing is an estimate; road accuracy has not yet been verified.
+
 ## Cluster Themes 0.19.2 (personal fork)
 
 - Preserve the opaque GT3 frame when the same theme rebuilds for a map transition, so BMW gauges are not exposed between layers. Other content layers still rebuild.

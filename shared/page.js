@@ -501,8 +501,8 @@ class Page {
         let y = 84;
         if (this.item('shiftCue')) {
             label(cv, x, 70, 'Shift lights');
-            y = this.pickRow(cv, x, y, w, 'Shift lights', 'shiftCue', (v) => (v === 'rpm' ? 'Rpm band' : 'Count-in'));
-            note(cv, x, y + 22, this.get('shiftCue') === 'rpm' ? ['From a fixed rpm up to the shift point.'] : ['Fill over the last second, flash early', 'by your reaction time.']);
+            y = this.pickRow(cv, x, y, w, 'Shift lights', 'shiftCue', (v) => (v === 'auto' ? 'Automatic follow' : v === 'rpm' ? 'Rpm band' : 'Count-in'));
+            note(cv, x, y + 22, this.get('shiftCue') === 'auto' ? ['Learns after 3 similar automatic upshifts.', 'Uses the normal shift point until ready.'] : this.get('shiftCue') === 'rpm' ? ['From a fixed rpm up to the shift point.'] : ['Fill over the last second, flash early', 'by your reaction time.']);
             y += 84;
         }
         if (this.item('smartTemps')) {

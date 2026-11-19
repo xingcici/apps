@@ -26,6 +26,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const AutoShift = require('./auto_shift');
 
 const WARM_OIL = 80;           // °C
 const COLD_LIMIT = 4500;       // rpm at 30 °C oil (Redline's petrol default)
@@ -39,10 +40,11 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const graded = (v) => v !== 'CRUISE' && v !== 'AUTO';
 
 class ShiftScore {
-    constructor(car, opts, log) {
+    constructor(car, opts, log, dataDir) {
         this.opts = opts;
         this.log = log;
         this.car = car;
+        this.auto = new AutoShift(dataDir, log);
         this.own = null;           // our last graded shift
         this.peak = 0;
         this.peakT = 0;
@@ -55,7 +57,7 @@ class ShiftScore {
         this.shareRead = 0;
         this.shareUsed = false;
         this.shareLast = null;     // Redline's last graded shift (its CRUISE / AUTO ones leave it)
-        car.onSample((d, t) => this._sample(d, t), () => { this.recent.length = 0; this.lastGear = null; });
+        car.onSample((d, t) => this._sample(d, t), () => { this.recent.length = 0; this.lastGear = null; this.auto.reset(); });
     }
 
     /** Redline's shift.json while it is fresh, else null. Never throws. */
@@ -96,9 +98,12 @@ class ShiftScore {
 
     /** The shift point right now: Redline's for this gear while its file is fresh, else our own. */
     shiftPoint(oil) {
+        const own = this._ownPoint(oil);
+        const predicted = this.auto.point(this.car.data(), this.opts(), Date.now());
+        if (predicted !== null) return { rpm: Math.min(predicted, own.rpm), cold: own.cold, auto: true };
         const s = this.redline();
         if (s && isNum(s.shiftNow) && s.shiftNow > 0) return { rpm: s.shiftNow, cold: !!s.cold };
-        return this._ownPoint(oil);
+        return own;
     }
 
     verdict(rpm, target, cold) {
@@ -120,6 +125,7 @@ class ShiftScore {
     }
 
     _sample(d, t) {
+        this.auto.sample(d, t, this.opts());
         if (!isNum(d.rpm)) return;
         const r = this.recent;
         r.push([t, d.rpm, d.speed]);

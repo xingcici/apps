@@ -15,6 +15,7 @@
     "shaders.js",
     "icons.js",
     "shift_score.js",
+    "auto_shift.js",
     "demo_script.js",
     "sun.js",
     "cluster_render_client.js",

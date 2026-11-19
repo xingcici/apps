@@ -1484,5 +1484,8 @@
   "pixels": "像素",
   "MiB of": "MiB /",
   "on the HUD": "在 HUD 上",
-  "on the cluster": "在仪表上"
+  "on the cluster": "在仪表上",
+  "Automatic follow": "自动挡跟随",
+  "Learns after 3 similar automatic upshifts.": "同类自动升挡三次后开始预测。",
+  "Uses the normal shift point until ready.": "学习完成前使用原换挡提示点。"
 }

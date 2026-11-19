@@ -94,7 +94,7 @@ class ShiftCue {
     /** The reaction time to use: Redline's (shift.json leadMs) while it gives one, else the learned one. */
     lead(shareLeadMs) { return isNum(shareLeadMs) && shareLeadMs >= 0 ? clamp(shareLeadMs, 0, 600) : this.learned; }
 
-    reset() { this.st = {}; this.flashInfo = null; this.recent = []; this.lastGear = null; }
+    reset() { this.st = {}; this.flashInfo = null; this.recent = []; this.lastGear = null; this.settleUntil = 0; }
 
     /**
      * Every tick. rpm the real reading (or the shift-light test's), rpmShow the smoothed one, shift / redline rpm,
@@ -102,6 +102,17 @@ class ShiftCue {
      * learn: { mode: 'D' | 'S' | 'M' | null } on the car's own data, else null (the demo drive and the test teach nothing).
      */
     tick(rpm, tMs, shift, redline, leadMs, gear, rpmShow, seen, learn) {
+        const autoKey = learn && learn.autoKey || null;
+        if (autoKey !== this.autoKey) { this.st = {}; this.flashInfo = null; this.autoKey = autoKey; }
+        const follow = learn && learn.autoFollow && (learn.mode === 'D' || learn.mode === 'S');
+        if (follow && isNum(gear) && isNum(this.lastGear) && gear !== this.lastGear) {
+            this.reset();
+            this.settleUntil = tMs + 300;
+        }
+        if (follow && tMs < this.settleUntil) {
+            this.lastGear = gear;
+            return (this.now = { from: shift, at: shift, shift: false, limiter: rpm >= redline - 40, rate: 0, fallSince: null });
+        }
         const was = this.st.on;
         const cue = shiftCue(this.st, rpm, tMs, shift, redline, leadMs, gear, rpmShow);
         if (cue.shift && !was) {

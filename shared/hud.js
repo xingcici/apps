@@ -813,8 +813,10 @@ class HudApp {
         this.resetG();
         this.score = new ShiftScore(this.car, () => ({
             redline: this.setting('redline'), shiftBefore: this.setting('shiftBefore'), coldGuard: this.setting('coldGuard'),
-            mode: this.car.data().demo ? null : this.gradeMode || null,
-        }), this.log);
+            mode: this.car.data().demo ? null : this.gradeMode || this.car.data().program || null,
+            autoFollow: this.setting('shiftCue') === 'auto', testing: this.testAt !== null,
+            drive: this.driveMode, variant: this.driveVariant,
+        }), this.log, this.ctx.dataDir);
     }
 
     /**
@@ -1462,9 +1464,13 @@ class HudApp {
         const d = this.car.data(), test = this._testRpm(now), testing = isNum(test);
         if (d.demo !== this.cueDemo) { this.cueDemo = d.demo; this.cue.reset(); }
         const share = this.score.redline();
-        const sp = this.score.shiftPoint(d.oil).rpm, lead = this.cue.lead(share && share.leadMs);
+        const point = this.score.shiftPoint(d.oil), sp = point.rpm;
+        const lead = point.auto ? 150 : this.cue.lead(share && share.leadMs);
         // learned only on the car's own data, not in the test, and only from flashes the driver could see
-        const learn = d.demo || testing || !this._countIn() ? null : { mode: this.gradeMode };
+        const learn = d.demo || testing || !this._countIn() ? null : {
+            mode: this.gradeMode || d.program || null, autoFollow: this.setting('shiftCue') === 'auto',
+            autoKey: point.auto ? this.score.auto.key : null,
+        };
         const seen = () => this.activeName !== 'off' && !!this.client.ready && Array.from(this.widgets.values()).some((x) => CUE_TYPES[x.w.type]);
         this.cue.tick(testing ? test : d.rpm, now, sp, this.setting('redline'), lead, testing ? undefined : d.gear, this.rpmF, seen, learn);
     }

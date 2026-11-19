@@ -17,6 +17,11 @@ for (const id of ['cluster_themes', 'idrive_hud_widgets']) {
     assert.strictEqual(locale.language, 'zh-CN');
     assert.strictEqual(spec.version, source.version);
     assert.strictEqual(spec.title, source.title);
+    if (id === 'cluster_themes') {
+        const cue = spec.settings.find(s => s.key === 'shiftCue');
+        assert.strictEqual(cue.default, 'countin');
+        assert.deepStrictEqual(cue.options.find(o => o[0] === 'auto'), ['auto', '自动挡跟随']);
+    }
     source.settings.forEach((setting, i) => {
         const built = spec.settings[i];
         assert.strictEqual(built.key, setting.key);
