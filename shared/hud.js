@@ -1856,9 +1856,23 @@ class HudApp {
     _rebuildInner() {
         if (!this.client.ready) return; // the 'ready' handler calls us again
         if (this._vehKeep()) return;
-        this._layerRefs().forEach((r) => r.c.drop(r.ref));
+        const name = this._layoutName();
+        let layout, layoutError;
+        if (name !== 'off') {
+            try { layout = this.layouts.load(name); } catch (e) { layoutError = e; }
+        }
+        const frame = layout && layout.widgets[0];
+        const oldFrame = frame && this.widgets.get(frame.id);
+        // The first boxes layer covers BMW's gauges; its map window and box list are uniforms.
+        const keepFrame = this.target === 'panel' && name === this.activeName && frame && frame.type === 'boxes' &&
+            frame.holeWhen === 'mapUp' && !frame.toggle && !frame.themes && oldFrame && !oldFrame.sheet &&
+            oldFrame.c.ready && JSON.stringify(oldFrame.w) === JSON.stringify(frame) ? oldFrame : null;
+        this._layerRefs().forEach((r) => {
+            if (!keepFrame || r.c !== keepFrame.c || r.ref !== keepFrame.ref) r.c.drop(r.ref);
+        });
         this.placed = [];
         this.widgets.clear();
+        if (keepFrame) this.widgets.set(frame.id, keepFrame);
         this.navShown = false;           // the nav widget shows a turn ("navHide" texts are empty then)
         this.sheets = [];
         this.pixelBytes = 0;
@@ -1867,7 +1881,6 @@ class HudApp {
         this.refused = null;
         clearTimeout(this.statusAskT); this.statusAskT = null;
         this.car.setRedline(this.setting('redline'));
-        const name = this._layoutName();
         this.activeName = name;
         this.holidayAt = this._holidayNow();     // the light string's holiday (garland.js); the minute timer rebuilds when it changes
         this.mapLayout = false;
@@ -1878,10 +1891,9 @@ class HudApp {
             this.log.info('off: nothing drawn, BMW\'s own ' + (this.target === 'panel' ? 'cluster' : 'HUD') + ' shows');
             return;
         }
-        let layout;
-        try { layout = this.layouts.load(name); } catch (e) {
-            this.problem = e.message;
-            this.log.warn('layout "' + name + '" unusable (' + e.message + '); showing nothing');
+        if (layoutError) {
+            this.problem = layoutError.message;
+            this.log.warn('layout "' + name + '" unusable (' + layoutError.message + '); showing nothing');
             this._wazeWant();
             return;
         }
@@ -1965,7 +1977,7 @@ class HudApp {
             if (e.kind === 'sheet') { sheets++; bytes += e.w * e.h * 4; px += e.w * e.h * 8; this._guard('sheet ' + e.members[0].id, () => this._createSheet(e)); }
             else {
                 if (IMAGE_TYPES[e.w.type]) { own++; px += e.w.w * e.w.h * 8; } else effects++;
-                this._guard('widget ' + e.w.id, () => this._create(e.w, null));
+                this._guard('widget ' + e.w.id, () => this._create(e.w, null, keepFrame && e.w.id === frame.id ? keepFrame : null));
             }
         });
         if (this._offset().x || this._offset().y || this._scale() !== 1) this._place();
@@ -2084,13 +2096,14 @@ class HudApp {
     }
 
     /** A widget: on its own layer (sheet null: an effect, or an image widget with "own": true), or a member of a sheet. */
-    _create(w, sheet) {
+    _create(w, sheet, retained) {
         let ref, c;
         if (sheet) { ref = sheet.ref; c = sheet.c; }
         else {
             c = this._clientAt(this._connOf(w));
             const base = { target: this.target, klass: w.class || 'content', z: w.z || 0, x: w.x, y: w.y, w: w.w, h: w.h };
-            if (IMAGE_TYPES[w.type]) ref = c.image(Object.assign({ iw: w.w, ih: w.h }, w.type === 'nav' ? this._navImage(w) : null, base));
+            if (retained) ref = retained.ref;
+            else if (IMAGE_TYPES[w.type]) ref = c.image(Object.assign({ iw: w.w, ih: w.h }, w.type === 'nav' ? this._navImage(w) : null, base));
             else ref = c.effect(Object.assign({ fs: w.type === 'swatch' ? calibration.SWATCH : shaders[w.type] }, base));
             if (!ref) { this.log.warn('widget "' + w.id + '": layer refused'); return; }
             this.placed.push({ c, ref, x: w.x, y: w.y, w: w.w, h: w.h });

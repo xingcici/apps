@@ -2,6 +2,12 @@
 
 Newest first. Dates are when the build was pushed.
 
+## Cluster Themes 0.19.2 (personal fork)
+
+- Preserve the opaque GT3 frame when the same theme rebuilds for a map transition, so BMW gauges are not exposed between layers. Other content layers still rebuild.
+- Include the previously deployed autostart and early renderer initialization in the source release, before waiting for the settings UI.
+- Regression checks cover map transitions, changed layouts, Off, invalid layouts, HUD isolation, layer limits and startup order. On-car visual verification remains pending.
+
 ## Nov 15 2026
 
 - **Cluster Themes 0.19.0, HUD Widgets 0.15.0:**
